@@ -1,0 +1,8 @@
+{
+  "//jsdoc-strip-async-await": "https://github.com/jsdoc3/jsdoc/issues/1188",
+  
+  "plugins": [
+    "plugins/markdown",
+    "node_modules/jsdoc-strip-async-await"
+  ]
+}

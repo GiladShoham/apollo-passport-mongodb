@@ -1,0 +1,60 @@
+{
+  "name": "apollo-passport-rethinkdbdash",
+  "version": "0.0.3",
+  "description": "rethinkdbdash driver for apollo-passport",
+  "main": "lib/index.js",
+  "scripts": {
+    "compile": "babel -d lib/ src/",
+    "prepublish": "npm run compile",
+    "jsdoc": "jsdoc -c jsdoc.conf.json -P package.json -R README.md -d docs/api src",
+    "test": "mocha --compilers js:babel-core/register \"src/**/*.spec.js\" --timeout 3000",
+    "coverage": "istanbul cover _mocha -- --compilers js:babel-core/register \"src/**/*.spec.js\" -R spec --timeout 3000",
+    "coveralls": "istanbul cover _mocha --report lcovonly -- --compilers js:babel-core/register \"src/**/*.spec.js\" -R spec --timeout 3000 && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apollo-passport/rethinkdbdash"
+  },
+  "bugs": {
+    "url": "https://github.com/apollo-passport/rethinkdbdash/issues"
+  },
+  "keywords": [
+    "apollo-passport",
+    "apollo",
+    "passport",
+    "auth",
+    "authentication",
+    "mongodb",
+    "apollo-passport-database-driver"
+  ],
+  "author": "Tomi Trescak",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.7.5",
+    "babel-core": "^6.10.4",
+    "babel-eslint": "^6.0.4",
+    "babel-plugin-syntax-async-functions": "^6.8.0",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babel-plugin-transform-regenerator": "^6.9.0",
+    "babel-preset-es2015": "^6.6.0",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
+    "coveralls": "^2.11.11",
+    "eslint": "^2.10.2",
+    "istanbul": "^1.1.0-alpha.1",
+    "jsdoc-strip-async-await": "^0.1.0",
+    "mocha": "^2.5.3",
+    "mocha-lcov-reporter": "^1.2.0",
+    "proxyquire": "^1.7.10",
+    "regenerator-runtime": "^0.9.5",
+    "sinon": "^1.17.4",
+    "sinon-chai": "^2.8.0"
+  },
+  "peerDependencies": {
+    "regenerator-runtime": "^0.9.5"
+  },
+  "dependencies": {
+    "meteor-random": "0.0.3",
+    "mongodb": "^2.2.7"
+  }
+}
