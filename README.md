@@ -2,7 +2,7 @@
 
 rethinkdbdash driver for apollo-passport
 
-[![npm](https://img.shields.io/npm/v/apollo-passport-rethinkdbdash.svg?maxAge=2592000)](https://www.npmjs.com/package/apollo-passport-rethinkdbdash) [![Circle CI](https://circleci.com/gh/apollo-passport/rethinkdbdash.svg?style=shield)](https://circleci.com/gh/apollo-passport/rethinkdbdash) [![Coverage Status](https://coveralls.io/repos/github/apollo-passport/rethinkdbdash/badge.svg?branch=master)](https://coveralls.io/github/apollo-passport/rethinkdbdash?branch=master) ![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)
+[![npm](https://img.shields.io/npm/v/apollo-passport-mongodb.svg?maxAge=2592000)](https://www.npmjs.com/package/apollo-passport-mongodb) [![Circle CI](https://circleci.com/gh/tomitrescak/apollo-passport-mongodb?style=shield)](https://circleci.com/gh/tomitrescak/apollo-passport-mongodb) [![Coverage Status](https://coveralls.io/github/tomitrescak/apollo-passport-mongodb/badge.svg?branch=master)](https://coveralls.io/github/tomitrescak/apollo-passport-mongodb?branch=master) ![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 Copyright (c) 2016 by Gadi Cohen, released under the MIT license.
 

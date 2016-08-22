@@ -1,7 +1,7 @@
 {
-  "name": "apollo-passport-rethinkdbdash",
-  "version": "0.0.3",
-  "description": "rethinkdbdash driver for apollo-passport",
+  "name": "apollo-passport-mongodb",
+  "version": "0.0.1",
+  "description": "mongodb driver for apollo-passport",
   "main": "lib/index.js",
   "scripts": {
     "compile": "babel -d lib/ src/",
@@ -13,10 +13,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/apollo-passport/rethinkdbdash"
+    "url": "https://github.com/tomitrescak/apollo-passport-mongodb"
   },
   "bugs": {
-    "url": "https://github.com/apollo-passport/rethinkdbdash/issues"
+    "url": "https://github.com/tomitrescak/apollo-passport-mongodb/issues"
   },
   "keywords": [
     "apollo-passport",
