@@ -187,6 +187,31 @@ class MongoDbDriver {
   }
 
   /**
+   * Given a userId, set the verified field as true, and delete the verification tokens
+   *
+   * @param {string} userId  - the id of the user to assert
+   * @param {string} verifiedField  - name of the verify field to change to true
+   * @param {string} tokenField   - name of the token field to delete
+   * @param {string} tokenExpirationField   - name of the token expiration field to delete
+   *
+   */
+  async verifyUserAccount(userId, verifiedField = 'verified',
+                          tokenField = 'verificationToken',
+                          tokenExpirationField = 'verificationTokenExpiration') {
+    await this._ready();
+    const user = await this.users.findOne({ _id: userId });
+
+    await this.users.updateOne({ _id: userId },
+                              { $set: {
+                                  [verifiedField]: true, },
+                                $unset: {
+                                  [tokenField]: '',
+                                  [tokenExpirationField]: '',
+                                },
+                              });
+  }
+
+  /**
    * Given a userId, ensures the user record contains the given email
    * address, and updates it with optional data.
    *
