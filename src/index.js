@@ -130,9 +130,9 @@ class MongoDbDriver {
       user._id = Random.id();
     }
     let id = user._id;
-    
+
     await this.users.insertOne(user);
-  
+
     return id;
   }
 
@@ -211,6 +211,27 @@ class MongoDbDriver {
                               });
   }
 
+  async addResetPasswordToken(userId, token , tokenExpiration, tokenField = 'resetPassToken',
+                              tokenExpirationField = 'resetPassTokenExpiration') {
+
+    await this.users.updateOne({
+      _id: userId, }, {
+        $set: {
+          [tokenField]: token,
+          [tokenExpirationField]: tokenExpiration,
+        },
+
+        // Remove the regular verification token, because if the user reset his password
+        // from the email, we are sure that this his email
+        // We don't want both token to live together
+        $unset: {
+          verificationToken: '',
+          tokenExpirationField: '',
+        },
+      }
+    );
+  }
+
   /**
    * Given a userId, ensures the user record contains the given email
    * address, and updates it with optional data.
@@ -223,7 +244,7 @@ class MongoDbDriver {
     await this._ready();
     const user = await this.users.findOne({_id: userId});
     const userEmail = user.emails.find((e) => e.address === email);
-    
+
     if (!userEmail) {
       const emailData = { address: email, ...data};
       await this.users.updateOne({_id: userId }, { $push: { 'emails': emailData }});
