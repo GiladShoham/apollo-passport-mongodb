@@ -136,6 +136,13 @@ class MongoDbDriver {
     return id;
   }
 
+  async updateUser(userId, updatedUser) {
+    await this._ready();
+    const result = await this.users.updateOne({ _id: userId },
+                              { $set: updatedUser });
+    return result.result.ok;
+  }
+
   /**
    * Fetches a user record by id.  Schema-based databases should merge
    * appropriate user-data from e.g. `user_emails` and `user_services`.
