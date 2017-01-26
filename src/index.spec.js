@@ -138,7 +138,7 @@ describe('apollo-passport-mongodb', () => {
         {
           _id: "sheppard",
           emails: [
-            { address: "sheppard@atlantis.net" }
+            { value: "sheppard@atlantis.net" }
           ],
           services: {
             facebook: {
@@ -149,7 +149,7 @@ describe('apollo-passport-mongodb', () => {
         {
           _id: "mckay",
           emails: [
-            { address: "mckay@atlantis.net" }
+            { value: "mckay@atlantis.net" }
           ]
         }
       ];
@@ -162,7 +162,7 @@ describe('apollo-passport-mongodb', () => {
         await db.users.insert(users);
       });
       after(async () => { r.dispose(); });
- 
+
       describe('fetchUserById', () => {
 
         it('returns a matching user if one exists', async () => {
@@ -224,8 +224,8 @@ describe('apollo-passport-mongodb', () => {
           await db.assertUserEmailData('mckay', email, { verified: true });
 
           const user = await db.fetchUserByEmail(email);
-          const data = user.emails.find(data => data.address === email);
-          data.should.deep.equal({ address: email, verified: true });
+          const data = user.emails.find(data => data.value === email);
+          data.should.deep.equal({ value: email, verified: true });
         });
 
       });

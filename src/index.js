@@ -116,8 +116,10 @@ class MongoDbDriver {
    *
    * @param {object} user
    *
+   * Emails format follow this standard:
+   * http://passportjs.org/docs/profile
    * {
-   *   emails: [ { address: "me@me.com" } ],
+   *   emails: [ { value: "me@me.com" } ],
    *   services: [ { facebook: { id: 1, ...profile } } ]
    *   ...anyOtherDataForUserRecordAtCreationTimeFromAppHooks
    * }
@@ -169,7 +171,7 @@ class MongoDbDriver {
   async fetchUserByEmail(email) {
     await this._ready();
 
-    const results = await this.users.findOne({ 'emails.address': email});
+    const results = await this.users.findOne({ 'emails.value': email});
 
     return results || null;
   }
@@ -188,7 +190,7 @@ class MongoDbDriver {
   async fetchUserByServiceIdOrEmail(service, id, email) {
     await this._ready();
 
-    const results = await this.users.findOne({ $or: [{ ['services.' + service + '.id']: id }, {'emails.address': email}]});
+    const results = await this.users.findOne({ $or: [{ ['services.' + service + '.id']: id }, {'emails.value': email}]});
 
     return results || null;
   }
@@ -250,10 +252,10 @@ class MongoDbDriver {
   async assertUserEmailData(userId, email, data) {
     await this._ready();
     const user = await this.users.findOne({_id: userId});
-    const userEmail = user.emails.find((e) => e.address === email);
+    const userEmail = user.emails.find((e) => e.value === email);
 
     if (!userEmail) {
-      const emailData = { address: email, ...data};
+      const emailData = { value: email, ...data};
       await this.users.updateOne({_id: userId }, { $push: { 'emails': emailData }});
     }
     if (data) {
