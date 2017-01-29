@@ -40,7 +40,7 @@ new MongoDriver(r, {
 });
 ```
 
-See [apollo-passport](https://github.com/apollo-passport/apollo-passport) for more info.
+See [apollo-passport](https://github.com/apollo-passport/apollo-passport) and [apollo-passport-local-strategy](https://github.com/GiladShoham/apollo-passport-local-strategy) for more info.
 
 ## Create your own DBDriver
 
