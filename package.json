@@ -1,9 +1,8 @@
 {
-  "name": "apollo-passport-mongodb",
-  "version": "0.0.1",
+  "name": "apollo-passport-mongodb-driver",
+  "version": "0.0.2",
   "description": "mongodb driver for apollo-passport",
   "main": "lib/index.js",
-  "files": ["src", ".babelrc", ".eslintrc.json", "circle.yml", "wallaby.js"],
   "scripts": {
     "compile": "babel -d lib/ src/",
     "prepublish": "npm run compile",
