@@ -18,7 +18,7 @@ Copyright (c) 2016 by Gilad Shoham, released under the MIT license.
 
 ```js
 import { MongoClient } from 'mongodb';
-import MongoDriver from './index';
+import MongoDriver from 'apollo-passport-mongodb-driver';
 
 // However you usually create your mongodb instance
 const m = await MongoClient.connect(`mongodb://${host}:${port}/${name}`);
