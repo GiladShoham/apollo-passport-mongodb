@@ -1,6 +1,6 @@
 {
   "name": "apollo-passport-mongodb-driver",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "mongodb driver for apollo-passport",
   "main": "lib/index.js",
   "scripts": {
@@ -13,10 +13,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tomitrescak/apollo-passport-mongodb"
+    "url": "https://github.com/GiladShoham/apollo-passport-mongodb-driver"
   },
   "bugs": {
-    "url": "https://github.com/tomitrescak/apollo-passport-mongodb/issues"
+    "url": "https://github.com/GiladShoham/apollo-passport-mongodb-driver/issues"
   },
   "keywords": [
     "apollo-passport",
