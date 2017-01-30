@@ -1,5 +1,6 @@
 import 'regenerator-runtime/runtime';
-import Random from 'meteor-random';
+import Mongo from 'mongodb';
+const ObjectId = Mongo.ObjectId;
 
 /** Class implementing the Apollo Passport DBDriver interface */
 class MongoDbDriver {
@@ -129,7 +130,7 @@ class MongoDbDriver {
   async createUser(user) {
     await this._ready();
     if (!user._id) {
-      user._id = Random.id();
+      user._id = (new ObjectId).toString();
     }
 
     user.dateUpdated = new Date();

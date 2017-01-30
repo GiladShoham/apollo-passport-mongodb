@@ -54,7 +54,6 @@
     "regenerator-runtime": "^0.9.5"
   },
   "dependencies": {
-    "meteor-random": "0.0.3",
     "mongodb": "^2.2.7"
   }
 }
