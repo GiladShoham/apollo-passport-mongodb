@@ -131,6 +131,10 @@ class MongoDbDriver {
     if (!user._id) {
       user._id = Random.id();
     }
+
+    user.dateUpdated = new Date();
+    user.dateAdded = new Date();
+    user.dateRegistered = new Date();
     let id = user._id;
 
     await this.users.insertOne(user);
@@ -141,7 +145,10 @@ class MongoDbDriver {
   async updateUser(userId, updatedUser) {
     await this._ready();
     const result = await this.users.updateOne({ _id: userId },
-                              { $set: updatedUser });
+                              { $set: updatedUser,
+                                $currentDate: {
+                                  dateUpdated: true,
+                                }, });
     return result.result.ok;
   }
 
@@ -217,6 +224,9 @@ class MongoDbDriver {
                                   [tokenField]: '',
                                   [tokenExpirationField]: '',
                                 },
+                                $currentDate: {
+                                  dateUpdated: true,
+                                },
                               });
   }
 
@@ -228,6 +238,10 @@ class MongoDbDriver {
         $set: {
           [tokenField]: token,
           [tokenExpirationField]: tokenExpiration,
+        },
+
+        $currentDate: {
+          dateUpdated: true,
         },
 
         // Remove the regular verification token, because if the user reset his password
@@ -256,12 +270,21 @@ class MongoDbDriver {
 
     if (!userEmail) {
       const emailData = { value: email, ...data};
-      await this.users.updateOne({_id: userId }, { $push: { 'emails': emailData }});
+      await this.users.updateOne({_id: userId }, {
+                                  $push: { 'emails': emailData },
+                                  $currentDate: {
+                                    dateUpdated: true,
+                                  }, });
     }
+
     if (data) {
       const idx = user.emails.indexOf(userEmail);
       const emailData = { ...userEmail, ...data };
-      await this.users.updateOne({_id: userId }, { $set: { ['emails.' + idx]: emailData}});
+      await this.users.updateOne({ _id: userId }, {
+                                  $set: { ['emails.' + idx]: emailData },
+                                  $currentDate: {
+                                    dateUpdated: true,
+                                  }, });
     }
   }
 
@@ -275,7 +298,11 @@ class MongoDbDriver {
    */
   async assertUserServiceData(userId, service, data) {
     await this._ready();
-    await this.users.updateOne({ _id: userId }, { $set: { services: { [service]: { ...data } } } });
+    await this.users.updateOne({ _id: userId }, {
+                                $set: { services: { [service]: { ...data } } },
+                                $currentDate: {
+                                  dateUpdated: true,
+                                }, });
   }
 
   // Not sure if we need this anymore, since fetch*() functions return
