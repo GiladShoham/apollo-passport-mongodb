@@ -13,6 +13,7 @@ Copyright (c) 2016 by Gilad Shoham, released under the MIT license.
 * Add function to add reset password tokens
 * Add update user function
 * Follow emails standard from here: [passportjs-profile](http://passportjs.org/docs/profile)
+* Add dates for user (dateUpdated, dateAdded, dateRegistered)
 
 ## Usage
 
